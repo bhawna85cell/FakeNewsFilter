@@ -5,7 +5,7 @@ import os
 
 app = FastAPI()
 
-MODEL_PATH = "models/misinformation_model"
+MODEL_PATH = "misinformation_model"
 GDRIVE_URL = "https://drive.google.com/drive/folders/1qfny70Of9yPJwE5JQuiKOXNE_VYrZV7o?usp=sharing"
 
 # Load model from Google Drive (if not present)
