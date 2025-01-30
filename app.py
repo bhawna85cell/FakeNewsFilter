@@ -3,7 +3,7 @@ import shutil
 import gdown
 from fastapi import FastAPI
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
-
+import uvicorn
 app = FastAPI()
 
 # Define paths and Google Drive URL
