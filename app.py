@@ -8,18 +8,22 @@ app = FastAPI()
 # Define paths and Google Drive URL
 MODEL_DIR = "./models/misinformation_model"
 MODEL_FILE = "model.safetensors"
-GDRIVE_FILE_ID = "1qfny70Of9yPJwE5JQuiKOXNE_VYrZV7o"  # Extracted from the folder link
-GDRIVE_URL = f"https://drive.google.com/uc?id={GDRIVE_FILE_ID}"
+GDRIVE_URL = "https://drive.google.com/drive/folders/1o5HZrgML4KSp7B-UODnfzMRS3xJUqjUw?usp=sharing"
 
 # Ensure the model directory exists
 os.makedirs(MODEL_DIR, exist_ok=True)
 
-# Download model from Google Drive if not present
-if not os.path.exists(os.path.join(MODEL_DIR, MODEL_FILE)):
-    print("Downloading model from Google Drive...")
-    gdown.download(GDRIVE_URL, os.path.join(MODEL_DIR, MODEL_FILE), quiet=False)
-else:
-    print("Model already exists locally.")
+
+print("Downloading model from Google Drive...")
+gdown.download_folder(GDRIVE_URL, quiet=False, output=MODEL_DIR)
+
+
+# Debug: Print the directory structure
+print("Directory structure after download:")
+for root, dirs, files in os.walk(MODEL_DIR):
+    print(f"Root: {root}")
+    print(f"Directories: {dirs}")
+    print(f"Files: {files}")
 
 # Load tokenizer and model
 print("Loading model...")
